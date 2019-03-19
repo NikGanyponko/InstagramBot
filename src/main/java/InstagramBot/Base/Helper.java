@@ -3,12 +3,18 @@ package InstagramBot.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static InstagramBot.Base.Locators.get;
 
 public class Helper {
+    private static WebDriver chromeDriver;
     private static String accountLogin;
     private static String accountPassword;
     private static final By ADD_INST_TEXT = get("AdditionalPages.AddInstToMainScreenText");
@@ -43,6 +49,26 @@ public class Helper {
             return true;
         } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    public static void createChromeDriver() {
+        if (chromeDriver == null) {
+            Map<String, String> mobileEmulation = new HashMap<String, String>();
+            mobileEmulation.put("deviceName", "Nexus 5");
+
+            ChromeOptions chromeOptions = new ChromeOptions().setExperimentalOption("mobileEmulation", mobileEmulation);
+            chromeDriver = new ChromeDriver(chromeOptions);
+            chromeDriver.manage().timeouts().implicitlyWait(2500, TimeUnit.MILLISECONDS);
+        }
+    }
+
+    public static WebDriver getChromeDriver(){
+        if (chromeDriver == null) {
+            createChromeDriver();
+            return chromeDriver;
+        } else {
+            return chromeDriver;
         }
     }
 

@@ -15,20 +15,17 @@ public class Main {
         ui.createUi();
     }
 
-    public static void startBot() {
-        /* Open Chrome driver in a mobile */
-        Map<String, String> mobileEmulation = new HashMap<String, String>();
-        mobileEmulation.put("deviceName", "Nexus 5");
+    public static void startBot(String login, String password) {
 
-        ChromeOptions chromeOptions = new ChromeOptions().setExperimentalOption("mobileEmulation", mobileEmulation);
-        WebDriver chromeDriver = new ChromeDriver(chromeOptions);
-        chromeDriver.manage().timeouts().implicitlyWait(2500, TimeUnit.MILLISECONDS);
+        Helper.setAccountLogin(login);
+        Helper.setAccountPassword(password);
+        Helper.createChromeDriver();
 
         /* Start bot */
-        Helper.setAccountLogin("1");
-        Helper.setAccountPassword("1");
+        Helper.setAccountLogin(Helper.getAccountLogin());
+        Helper.setAccountPassword(Helper.getAccountPassword());
 
-        Login login = new Login(chromeDriver);
+        Login loginClass = new Login(Helper.getChromeDriver());
         //AccountInfo accountInfo = new AccountInfo(chromeDriver);
     }
 }
