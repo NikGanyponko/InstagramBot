@@ -1,12 +1,8 @@
 package InstagramBot;
 
+import InstagramBot.Action.Login;
+import InstagramBot.Action.Profile;
 import InstagramBot.Base.Helper;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -26,6 +22,7 @@ public class Main {
         Helper.setAccountPassword(Helper.getAccountPassword());
 
         Login loginClass = new Login(Helper.getChromeDriver());
+        Profile profileClass = new Profile(Helper.getChromeDriver());
         //AccountInfo accountInfo = new AccountInfo(chromeDriver);
     }
 }

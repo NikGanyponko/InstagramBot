@@ -54,6 +54,7 @@ public class Helper {
 
     public static void createChromeDriver() {
         if (chromeDriver == null) {
+            System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
             Map<String, String> mobileEmulation = new HashMap<String, String>();
             mobileEmulation.put("deviceName", "Nexus 5");
 
@@ -76,6 +77,13 @@ public class Helper {
         try{
             Random random = new Random();
             Thread.sleep((random.nextInt(7)*1000 + 1000));
+            System.out.println("sleep");
+        } catch (InterruptedException e) { }
+    }
+
+    public static void sleep(int milliSeconds) {
+        try{
+            Thread.sleep(milliSeconds);
             System.out.println("sleep");
         } catch (InterruptedException e) { }
     }
