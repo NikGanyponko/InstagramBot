@@ -19,12 +19,12 @@ public class LoginPage {
         chromeDriver.get(loginPageUrl + Helper.getAccountLogin());
     }
 
-    public static void findLoginInput (WebDriver chromeDriver) {
+    public static void setLoginInput (WebDriver chromeDriver) {
         chromeDriver.findElement(LOGIN_INPUT)
                 .sendKeys(Helper.getAccountLogin());
     }
 
-    public static void findPasswordInput (WebDriver chromeDriver) {
+    public static void setPasswordInput (WebDriver chromeDriver) {
         chromeDriver.findElement(PASSWORD_INPUT)
                 .sendKeys(Helper.getAccountPassword());
     }
