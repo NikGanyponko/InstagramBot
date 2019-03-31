@@ -10,22 +10,19 @@ import java.util.regex.Pattern;
 public class DataUser {
     public static HashSet<String> followersSet = new HashSet<String>();
     public static HashSet<String> unFollowingSet = new HashSet<String>();
+    private static String mainPageSourceString;
+    private static char[] mainPageMainChar;
+    private static Matcher matcher;
 
     public static void setFollowers(WebDriver chromeDriver) {
         Helper.sleep(180000);
-        String pageSource = chromeDriver.getPageSource();
-        String mainPageMainString = pageSource.substring(pageSource.indexOf("<main"), pageSource.indexOf("</main"));
-        char[] mainPageMainChar = mainPageMainString.toCharArray();
-
-        Matcher matcher = Pattern.compile("(href=\")").matcher(mainPageMainString);
+        setPageResource(chromeDriver);
 
         while (matcher.find()) {
             int i = matcher.end() + 1;
-
             String loginUser = "/";
-            char endOfLogin = '/';
 
-            while (mainPageMainChar[i] != endOfLogin){
+            while (mainPageMainChar[i] != '/'){
                 loginUser = loginUser + mainPageMainChar[i];
                 i++;
             }
@@ -35,19 +32,13 @@ public class DataUser {
 
     public static void setUnFollowers(WebDriver chromeDriver) {
         Helper.sleep(180000);
-        String pageSource = chromeDriver.getPageSource();
-        String mainPageMainString = pageSource.substring(pageSource.indexOf("<main"), pageSource.indexOf("</main"));
-        char[] mainPageMainChar = mainPageMainString.toCharArray();
-
-        Matcher matcher = Pattern.compile("(href=\")").matcher(mainPageMainString);
+        setPageResource(chromeDriver);
 
         while (matcher.find()) {
             int i = matcher.end() + 1;
-
             String loginUser = "/";
-            char endOfLogin = '/';
 
-            while (mainPageMainChar[i] != endOfLogin){
+            while (mainPageMainChar[i] != '/'){
                 loginUser = loginUser + mainPageMainChar[i];
                 i++;
             }
@@ -57,6 +48,13 @@ public class DataUser {
                 System.out.println("№ " + unFollowingSet.size() + " не подписанный пользователь " + loginUser);
             }
         }
+    }
+
+    private static void setPageResource(WebDriver chromeDriver) {
+       mainPageSourceString = chromeDriver.getPageSource()
+                .substring(chromeDriver.getPageSource().indexOf("<main"), chromeDriver.getPageSource().indexOf("</main"));
+       mainPageMainChar = mainPageSourceString.toCharArray();
+       matcher = Pattern.compile("(href=\")").matcher(mainPageSourceString);
     }
 
     public static Iterator<String> getIteratorUnFollowingSet() {
