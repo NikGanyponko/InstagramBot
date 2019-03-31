@@ -21,8 +21,8 @@ public class Main {
         Helper.setAccountLogin(Helper.getAccountLogin());
         Helper.setAccountPassword(Helper.getAccountPassword());
 
+        /* Main actions of logic */
         Login loginClass = new Login(Helper.getChromeDriver());
         Profile profileClass = new Profile(Helper.getChromeDriver());
-        //AccountInfo accountInfo = new AccountInfo(chromeDriver);
     }
 }
