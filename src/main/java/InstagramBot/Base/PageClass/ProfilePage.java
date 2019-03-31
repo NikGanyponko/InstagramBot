@@ -34,4 +34,8 @@ public class ProfilePage {
         chromeDriver.findElement(CANCEL_SUBSCRIPTION_BUTTON).click();
     }
 
+    public static String getUnFollowersUrl (String login) {
+        return "https://www.instagram.com" + login;
+    }
+
 }

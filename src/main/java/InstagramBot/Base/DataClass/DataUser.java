@@ -3,6 +3,7 @@ package InstagramBot.Base.DataClass;
 import InstagramBot.Base.Helper;
 import org.openqa.selenium.WebDriver;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,7 +30,6 @@ public class DataUser {
                 i++;
             }
             followersSet.add(loginUser);
-            System.out.println(loginUser);
         }
     }
 
@@ -54,8 +54,12 @@ public class DataUser {
 
             if (followersSet.add(loginUser)) {
                 unFollowingSet.add(loginUser);
-                System.out.println("Не подписанный пользователь " + loginUser);
+                System.out.println("№ " + unFollowingSet.size() + " не подписанный пользователь " + loginUser);
             }
         }
+    }
+
+    public static Iterator<String> getIteratorUnFollowingSet() {
+        return unFollowingSet.iterator();
     }
 }

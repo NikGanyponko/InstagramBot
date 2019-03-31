@@ -85,14 +85,14 @@ public class Helper {
         try{
             Random random = new Random();
             int milliSeconds = (random.nextInt(7)*1000 + 1000);
-            System.out.println("sleep : " + milliSeconds);
+            System.out.println("Торзмозимся на : " + milliSeconds/1000);
             Thread.sleep(milliSeconds);
         } catch (InterruptedException e) { }
     }
 
     public static void sleep(int milliSeconds) {
         try{
-            System.out.println("sleep : " + milliSeconds);
+            System.out.println("Торзмозимся на : " + milliSeconds/1000);
             Thread.sleep(milliSeconds);
         } catch (InterruptedException e) { }
     }
